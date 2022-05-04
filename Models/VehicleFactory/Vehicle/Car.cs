@@ -8,8 +8,14 @@ namespace VehiclesManagementSystem.Models.VehicleFactory
     { 
         public override  string CreateVehicle()
         {
-
-            return "Car is created ";
+            string x;
+            x=" Car is created with  : ";
+            foreach(AVehicleComponent item in vehicleCompositeList)
+            {
+                x+=  item.componentName + " / ";
+            }
+          
+            return x;
         }
     }
 }

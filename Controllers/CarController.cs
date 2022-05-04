@@ -17,49 +17,46 @@ namespace VehiclesManagementSystem.Controllers
 
             IVehicle carObj = Factory.getVehicle("Car");
 
-            Console.WriteLine(carObj.CreateVehicle());
 
 
 
-            IvehicleComponent door = new VehicleComponent()
+
+            AVehicleComponent door = new VehicleComponent("door")
             {
-                ComponentName = "Door",
+               
                 Price = 100,
                 Manufacture = "bmw"
                
             
             };
-            IvehicleComponent glass = new VehicleComponent()
+            AVehicleComponent glass = new VehicleComponent("glass")
             {
-                ComponentName = "glass",
+               
                 Price = 5000,
                 Manufacture = "axy"
 
             };
 
-            IvehicleComponent loock = new VehicleComponent()
+            AVehicleComponent loock = new VehicleComponent("lock")
             {
-                ComponentName = "lock",
+               
                 Price = 1000,
                 Manufacture = "xyx"
             };
 
 
-            IvehicleComponent car = new VehicleComposite();
+            AVehicleComponent car = new VehicleComposite(carObj,"carObj");
           
 
             car.addComponent(door);
             car.addComponent(glass);
             car.addComponent(loock);
 
-
+            
             ViewBag.emptyString=car.returnPrice();
 
-            
-
-    
-
-
+            Console.WriteLine(carObj.CreateVehicle());
+        
 
 
 

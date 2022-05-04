@@ -1,45 +1,45 @@
-﻿namespace VehiclesManagementSystem.Models.Vehicle
+﻿using VehiclesManagementSystem.Models.VehicleFactory.Vehicle;
+
+namespace VehiclesManagementSystem.Models.Vehicle
 {
-    public class VehicleComposite : IvehicleComponent
+    public class VehicleComposite : AVehicleComponent
     {
 
 
-        public List<IvehicleComponent> vehicleCompositeList { get; set; }
+        public IVehicle car{ get; set; }
+    
 
-
-        public VehicleComposite()
+        public VehicleComposite(IVehicle car,string c   ): base(c)
         {
-            vehicleCompositeList = new List<IvehicleComponent>();
+         
+            this.car = car;
+            car.vehicleCompositeList = new List<AVehicleComponent>();
         }
 
-        void IvehicleComponent.addComponent(IvehicleComponent obj)
+         public override void addComponent(AVehicleComponent obj)
         {
-           vehicleCompositeList.Add(obj);
-
-        }
-        List<IvehicleComponent> finishCar()
-        {
-            return vehicleCompositeList;
+            car.vehicleCompositeList.Add(obj);
 
         }
 
-        void IvehicleComponent.deleteComponent(IvehicleComponent obj)
+
+        public override void deleteComponent(AVehicleComponent obj)
         {
-            vehicleCompositeList.Remove(obj);
+            car.vehicleCompositeList.Remove(obj);
         }
 
 
-        void IvehicleComponent.updateComponent(double Price, string Manufacture, string ComponentName)
+        public override void updateComponent(double Price, string Manufacture, string ComponentName)
         {
             throw new NotImplementedException();
         }
 
 
-        double IvehicleComponent.returnPrice()
+        public override double returnPrice()
         {
             double sum = 0;
 
-            foreach (IvehicleComponent comp in vehicleCompositeList)
+            foreach (AVehicleComponent comp in car.vehicleCompositeList)
             {
                 sum = sum + comp.returnPrice();
 
@@ -47,6 +47,6 @@
             return sum;
         }
 
-      
+     
     }
 }

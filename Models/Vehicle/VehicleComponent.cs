@@ -2,40 +2,40 @@
 
 namespace VehiclesManagementSystem.Models
 {
-    public class VehicleComponent : IvehicleComponent     //leafObject
+    public class VehicleComponent : AVehicleComponent     //leafObject
 
     {
+        public VehicleComponent(string componentName) : base(componentName)
+        {
+            this.componentName = componentName;
+        }
+
         // properties support encapsulation 
-        public string ComponentName { get; set; }
 
         public double Price { get; set; }
-
-
         public string Manufacture { get; set; }
 
+        public override void addComponent(AVehicleComponent obj)
+        {
+            throw new NotImplementedException();
+        }
 
-
-        void IvehicleComponent.addComponent(IvehicleComponent obj)
+        public override void deleteComponent(AVehicleComponent obj)
         {
             throw new NotImplementedException();
         }
 
 
-        void IvehicleComponent.deleteComponent(IvehicleComponent obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        double IvehicleComponent.returnPrice()
+        public override double returnPrice()
         {
             return this.Price;
         }
 
-        void IvehicleComponent.updateComponent(double Price, string Manufacture, string ComponentName)
+        public override void updateComponent(double Price, string Manufacture, string ComponentName)
         {
             this.Price = Price;
             this.Manufacture = Manufacture; 
-            this.ComponentName = ComponentName; 
+            this.componentName = ComponentName; 
         }
     }
 }
